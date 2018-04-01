@@ -1,7 +1,7 @@
-<?php 
-include "db_connect.php";
-include "session.php";
-$x=substr($login_session,0,1);
+<?php
+   include('session.php');
+   include('db_connect.php');
+   $x=substr($login_session,0,1);
    if($x=="P")
    {
     $query="select tblParentId, concat(tblParentLname, ', ', tblParentFname, ' ', tblParentMname) as names from tblparent where tblParent_tblUserId='$user_id' and tblParentFlag=1";
@@ -24,8 +24,13 @@ $x=substr($login_session,0,1);
     $result1=mysqli_query($con, $query1);
     $row1=mysqli_fetch_array($result1);
     $roleid=$row1['tblUser_tblRoleId'];
+    $query="select * from tblrole where tblRoleId='$roleid' and tblRoleFlag=1";
+    $result=mysqli_query($con, $query);
+    $row=mysqli_fetch_array($result);
+    $rolename=$row['tblRoleName'];
    }
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -51,6 +56,15 @@ $x=substr($login_session,0,1);
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="formwizard2.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: bold;
+      }
+    </style>
+
   </head>
 
   <body class="hold-transition skin-green-light sidebar-mini">
@@ -91,9 +105,9 @@ $x=substr($login_session,0,1);
 
                     <p>
                       <!--<?php echo $namess ?>-->
-                      <!-- <small>
+                      <small>
                         <?php echo $rolename ?>
-                      </small> -->
+                      </small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -229,7 +243,7 @@ $x=substr($login_session,0,1);
         </section>
 
         <!-- Main content -->
-        <section class="content" style="margin-top: 3%">
+        <section class="content">
           <div class="row">
               <div class="col-md-12">
                 <div class="box box-default">
@@ -294,12 +308,12 @@ $x=substr($login_session,0,1);
       <!-- /.content-wrapper -->
 
       <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>Version</b> Last na please
-        </div>
-        <strong>Copyright &copy; 2017 <a href="http://almsaeedstudio.com">Kiddo Academy and Development Center</a>.</strong> All rights
-        reserved.
-      </footer>
+          <div class="pull-right hidden-xs">
+            <b>Version</b> 2017
+          </div>
+          <strong>Copyright &copy; 2017 <a href="http://almsaeedstudio.com">Kiddo Academy and Development Center</a>.</strong> All rights
+          reserved.
+        </footer>
 
       <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">
