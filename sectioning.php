@@ -380,7 +380,24 @@
                           </thead>
                           <tbody>
                             <?php
-                                $query="select tblsection.tblSectionId, tblsection.tblSectionName, tbllevel.tblLevelName, tbldivision.tblDivisionName, tblsection.tblSectionSession, count(tblsectionstud.tblSectStud_tblSectionId) as sectCount, tblsection.tblSection_tblFacultyId, tblsection.tblSectionMaxCap from tblsection inner join tbllevel on tblsection.tblSection_tblLevelId=tbllevel.tblLevelId inner join tbldivision on tbllevel.tblLevel_tblDivisionId=tbldivision.tblDivisionId left join tblsectionstud on tblsection.tblSectionId=tblsectionstud.tblSectStud_tblSectionId where tblsection.tblSectionFlag=1 group by tblsection.tblSectionId";
+                                $query="
+                                  select 
+                                    tblsection.tblSectionId, 
+                                    tblsection.tblSectionName, 
+                                    tbllevel.tblLevelName, 
+                                    tbldivision.tblDivisionName, 
+                                    tblsection.tblSectionSession, 
+                                    sum(case when tblsectionstud.tblSectStud_tblSchoolYrId=$syid THEN 1 ELSE 0 END) as sectCount, 
+                                    tblsection.tblSection_tblFacultyId, 
+                                    tblsection.tblSectionMaxCap 
+                                  from tblsection 
+                                    inner join tbllevel on tblsection.tblSection_tblLevelId=tbllevel.tblLevelId 
+                                    inner join tbldivision on tbllevel.tblLevel_tblDivisionId=tbldivision.tblDivisionId 
+                                    left join tblsectionstud on tblsection.tblSectionId=tblsectionstud.tblSectStud_tblSectionId
+                                  where 
+                                    tblsection.tblSectionFlag=1
+                                  group by 
+                                  tblsection.tblSectionId";
                                 $result=mysqli_query($con, $query);
                                 while($row=mysqli_fetch_array($result)):
                                   $facultyid=$row['tblSection_tblFacultyId'];
@@ -423,7 +440,7 @@
                                   </td>
                                   <td style="width: 25%">
                                     <button type="button" class="btn btn-info view_section" data-toggle="modal" data-target="#mdlViewSection" data-id="<?php echo $row['tblSectionId'] ?>" data-title="<?php echo $row['tblLevelName'].' - '.$row['tblSectionName']; ?>">View Students</button>
-                                    <button type="button" class="btn btn-primary fill_section" data-toggle="modal" data-target="#mdlFillSection" data-id="<?php echo $row['tblSectionId'] ?>">Fill Section</button>
+                                    <button type="button" class="btn btn-primary fill_section" data-toggle="modal" data-target="#mdlFillSection" data-id="<?php echo $row['tblSectionId'] ?>" <?php echo $row['sectCount'] < $max ? '' : 'disabled' ?>>Fill Section</button>
                                     <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#mdlViewStud">View Students</button> -->
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#mdlAssignFaculty" style="margin-top: 2%" data-faculty="<?php echo $row1['tblFacultyId'] ?>">Assign Faculty-in-Charge</button>
                                   </td>
