@@ -682,7 +682,6 @@ $(document).ready(function(){
                               <div class="col-sm-6 selectContainer">
                                 <div class="input-group" style="width:100%;">
                                   <select class="form-control" name="selUpdFeeMand" id="selUpdFeeMand" style="text-transform:uppercase ;">
-                                  <option selected disabled>--Select Fee Status--</option>
                                   <option value='Mandatory'>Mandatory</option>
                                   <option value='Optional'>Optional</option>
                                   </select>
@@ -696,7 +695,6 @@ $(document).ready(function(){
                               <div class="col-sm-6 selectContainer">
                                 <div class="input-group" style="width:100%;">
                                   <select class="form-control" name="selUpdFeeType" id="selUpdFeeType" style="text-transform:uppercase ;">
-                                  <option selected disabled>--Select Fee Status--</option>
                                   <option value='GENERAL FEE'>GENERAL FEE</option>
                                   <option value='SPECIFIC FEE'>SPECIFIC FEE</option>
                                   </select>

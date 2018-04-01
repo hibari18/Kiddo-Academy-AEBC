@@ -47,8 +47,8 @@ if(isset($_POST['btnSubmit']))
 	$result = mysqli_query($con, $query);
 
   $name = $_FILES['fatherfile']['name'];
- $target_dir = "upload/";
- $target_file = $target_dir . basename($_FILES["fatherfile"]["name"]);
+ 	$target_dir = "upload/";
+ 	$target_file = $target_dir . basename($_FILES["fatherfile"]["name"]);
 
  // Select file type
  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -59,6 +59,9 @@ if(isset($_POST['btnSubmit']))
  // Check extension
  if( in_array($imageFileType,$extensions_arr) ){
  
+ 	 // // Convert to base64 
+	  // $image_base64 = base64_encode(file_get_contents($_FILES['fatherfile']['tmp_name']) );
+	  // $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
   // Insert record
   $query = "update tblparent set tblParentImage='".$name."' where tblParentId='$fatherid')";
   mysqli_query($con,$query);

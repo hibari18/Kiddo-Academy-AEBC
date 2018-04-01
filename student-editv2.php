@@ -347,7 +347,7 @@
           </div>
         </div>
         <div class="form-group">
-        <label class="col-lg-3 control-label">Gender:</label>
+        <label class="col-lg-3 control-label">Sex:</label>
           <div class="col-lg-7">
             <label class="radio-inline">
               <input type="radio" name="optradio" value="M" <?php echo($gender=='M')?'checked':'' ?>>Male
@@ -468,7 +468,7 @@
                       <!-- left column -->
                       <div class="col-md-4 col-sm-6 col-xs-12">
                       <div class="text-center">
-                          <img src="<?php echo $studimg ?>" class="avatar img-circle img-thumbnail" alt="avatar">
+                          <img src="<?php echo $fimg ?>" class="avatar img-circle img-thumbnail" alt="avatar">
                           <h6>Upload new photo</h6>
                           <input type="file" class="text-center center-block well well-sm" name="fatherfile" id="fatherfile">
                         </div>
@@ -481,7 +481,7 @@
                       {
 
                         $id = $_POST['txtStudId'];
-                        $query = "select p.tblParentId, p.tblParentLname, p.tblParentFname, p.tblParentMname, p.tblParentAddSt, p.tblParentAddBrgy, p.tblParentAddCity, p.tblParentAddCountry, p.tblParentTelNo, p.tblParentCpNo, p.tblParentOccupation, p.tblParentCompany, p.tblParentComAddSt, p.tblParentComAddBrgy, p.tblParentComAddCity, p.tblParentComAddCountry, p.tblParentWorkNo, p.tblParentEmail from tblparent p, tblparentstudent ps where ps.tblParStud_tblStudentId = '$id' and p.tblParentId=ps.tblParStud_tblParentId and p.tblParentFlag = 1 and p.tblParentRelation = 'Father'";
+                        $query = "select p.tblParentId, p.tblParentLname, p.tblParentFname, p.tblParentMname, p.tblParentAddSt, p.tblParentAddBrgy, p.tblParentAddCity, p.tblParentAddCountry, p.tblParentTelNo, p.tblParentCpNo, p.tblParentOccupation, p.tblParentCompany, p.tblParentComAddSt, p.tblParentComAddBrgy, p.tblParentComAddCity, p.tblParentComAddCountry, p.tblParentWorkNo, p.tblParentEmail, p.tblParentImage from tblparent p, tblparentstudent ps where ps.tblParStud_tblStudentId = '$id' and p.tblParentId=ps.tblParStud_tblParentId and p.tblParentFlag = 1 and p.tblParentRelation = 'Father'";
                         $result = mysqli_query($con, $query);
                         $row = mysqli_fetch_array($result);
                         $pId = $row['tblParentId'];
@@ -502,6 +502,7 @@
                         $pcaddcountry = $row['tblParentComAddCountry'];                        
                         $pcompanyno = $row['tblParentWorkNo'];
                         $pemail = $row['tblParentEmail'];
+                        $fimg = $row['tblParentImage'];
                         $arrFather = array($pfname, $plname, $pmname, $ptelno, $pcpno, $pjob, $pcompany, $pcompanyno, $pemail);
                         ?>
                         <input type="hidden" name="txtFStudId" id="txtFStudId" value="<?php echo $id ?>"/>
