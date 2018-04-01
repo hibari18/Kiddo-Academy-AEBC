@@ -76,7 +76,10 @@ if(isset($_POST['btnAddSy']))
 	    {
 	    	header('Location: school-year.php?msg=2');
 	    }
-*/		$query = "update tblschoolyear set tblSchoolYrActive = '$active' where tblSchoolYrId = '$id'";
+*/		
+		if($active=='ACTIVE')
+			mysqli_query($con, "UPDATE tblschoolyear SET tblSchoolYrActive = 'INACTIVE'");
+		$query = "update tblschoolyear set tblSchoolYrActive = '$active' where tblSchoolYrId = '$id'";
 		if (!$query = mysqli_query($con, $query)) {
 	   			exit(mysqli_error($con));
 		}else{
