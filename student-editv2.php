@@ -306,11 +306,13 @@
         $studimg = $row['tblStudInfoImage'];
         $arrStud = array($fname, $lname, $mname, $bday, $bplace, $gender, $addst, $addbrgy, $addcity, $addcountry, $religion, $nationality, $lang1, $lang2);
         ?>
-    <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 5%">
       <div class="text-center">
-        <img src="<?php echo $studimg ?>" class="avatar img-circle img-thumbnail" alt="avatar">
+        <img id="studpictureview" src="<?php echo $studimg ?>" class="avatar img-rounded img-reponsive img-thumbnail" alt="avatar">
+       <!--  <img id="studpictureview" src="<?php echo $studimg ?>" class="avatar img-rounded img-reponsive" alt="Student's Photo"  style="height:180px;max-width:100%;"> -->
         <h6>Upload new photo</h6>
-        <input type="file" class="text-center center-block well well-sm" name="file" id="file">
+        <input type="file" class="text-center center-block well well-sm" name="file" id="file" accept="image/*" onchange="document.getElementById('studpictureview').src = window.URL.createObjectURL(this.files[0])">
+        <!-- <input type="file" accept="image/*" style="margin-top:3%;" onchange="document.getElementById('studpictureview').src = window.URL.createObjectURL(this.files[0])" required> -->
       </div>
     </div>
     <!-- edit form column -->
