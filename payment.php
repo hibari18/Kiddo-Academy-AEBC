@@ -1121,6 +1121,7 @@ $(document).ready(function(){
                   <form method="post" action="updateSchemeDetail.php">
                   <div class="modal-body">
                   <input type="hidden" class="form-control" name="txtDetId" id="txtDetId1">
+                  <input type="hidden" class="form-control" name="txtFeeIdUpdateSched" id="txtFeeIdUpdateSched">
                   <div class="form-group" style="margin-top: 5%">
                           <label class="col-sm-4" style="text-align: right">Payment Order</label>
                           <div class="col-sm-7">
@@ -1533,11 +1534,9 @@ var activeTab = localStorage.getItem('activeTab');
         if(feemandatory == 'N') {
           //not mandatory
             $('#txtAddScheme').val('NO SCHEME').addClass('c-readonly');
-            $('#txtAddSchemeNo').val('1').addClass('c-readonly');
         } else {
           //mandatory
            $('#txtAddScheme').val('').removeClass('c-readonly');
-            $('#txtAddSchemeNo').val('1').removeClass('c-readonly');
         }
           setTimeout(function() {
             $('#addScheme').bootstrapValidator('revalidate','txtAddScheme');
@@ -1549,6 +1548,13 @@ var activeTab = localStorage.getItem('activeTab');
     $('.input-group').on('keydown', '.c-readonly' ,function(e) {
         e.preventDefault();
         console.log('testing');
+    });
+
+    $('#datatable2').on('click', 'td button.btnUpdateSched', function(){
+        var feeid = $(this).parent().siblings('.feecode-cell').data('feeid');
+        var nodetails = $(this).parent().siblings('.feecode-cell').data('nodetails');
+        $('#txtFeeIdUpdateSched').val(feeid);
+        $('#mdlUpdateSched').modal('show');
     });
 
 });
