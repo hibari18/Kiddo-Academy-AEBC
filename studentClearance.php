@@ -118,7 +118,7 @@
 
                 // echo 'Cleared';
 
-            } else {
+            } else if($row['tblGenAveStatus'] == 'FAILED') {
                 // failed
                 mysqli_query($con, "
                     update  tblstudent 

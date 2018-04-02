@@ -80,10 +80,12 @@ foreach($acc as $q)
     <script>
       function showCheck()
       {
-        if(document.getElementById('check').checked) {
+        if(document.getElementById('chkCheck').checked) {
             $("#txtAmount").prop('disabled', false);
             $("#txtBankName").prop('disabled', false);
             $("#num").prop('disabled', false);
+            document.getElementById("chkCheck1").value=1;
+
         } else {
             $("#txtAmount").prop('disabled', true);
             $("#txtBankName").prop('disabled', true);
@@ -416,7 +418,8 @@ foreach($acc as $q)
 
                               <label class="col-md-3">Cash Amount:</label>
                               <label> -->
-                                <input type="checkbox" name="check" id="check" onchange="showCheck()"> Check
+                                <input type="checkbox" name="chkCheck" id="chkCheck" onchange="showCheck()"> Check
+                            <input type="hidden" name="chkCheck1" id="chkCheck1" value="0">
                               </label>
                             </div>
                             <div class="col-md-12" style="margin-top: 3%">

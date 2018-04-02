@@ -82,6 +82,7 @@
             $("#txtAmount").prop('disabled', false);
             $("#txtBankName").prop('disabled', false);
             $("#num").prop('disabled', false);
+            document.getElementById("chkCheck1").value=1;
         } else {
             $("#txtAmount").prop('disabled', true);
             $("#txtBankName").prop('disabled', true);
@@ -398,8 +399,8 @@
             </div>            
         </div> <!-- / panel preview -->
                             <div class="form-group col-md-9" style="margin-top: 5%">
-                            <input type="checkbox" name="chkCheck" id="chkCheck" onchange="showCheck()" value="1"> Check
-                            <input type="hidden" name="chkCheck" id="chkCheck" value="0">
+                            <input type="checkbox" name="chkCheck" id="chkCheck" onchange="showCheck()"> Check
+                            <input type="hidden" name="chkCheck1" id="chkCheck1" value="0">
                               </label>
                             </div>
                             <div class="col-md-12" style="margin-top: 3%">

@@ -4,7 +4,7 @@ $ind=$_POST['ind'];
 $or=$_POST['txtOR'];
 $id=$_POST['txtAccId'];
 $pr="";
-$chk=$_POST['chkCheck'];
+$chk=$_POST['chkCheck1'];
 if($chk==1)
 {
 $camnt=$_POST['txtAmount'];
@@ -14,6 +14,7 @@ $chknum=$_POST['num'];
 $tamount=$_POST['amountp'];
 $dates=date('Y-m-d');
 $i=0;
+
 foreach($id as $x)
 {
 	$datenow=date('Y-m-d');
