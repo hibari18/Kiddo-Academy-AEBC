@@ -328,14 +328,15 @@ $lvlid=$row['tblStudent_tblLevelId'];
                     <div class="tab-pane active" id="tab_1">
                           <form method="post" action="changeEnrollScheme.php">
                           <div class="box-body">
+                            <span style="color: rgba(255, 0, 0, 0.9); padding:5%;">* <span style="color: rgba(0, 0, 0, 0.9) ; font-size: 12px;">Indicates required fields</span></span>
                             <div class="col-md-12"  style="margin-top: 3%">
                               <!-- <button type="button" class="btn btn-success" name="billAdd" id="billAdd" onclick="addField();">Add Additional Fee</button> -->
 
                                   <div>
                                   <input type="hidden" value="<?php echo $studid ?>" name="txtstudid" id="txtstudid" />
                                   <input type="hidden" value="<?php echo $lvlid ?>" name="txtlvlid" id="txtlvlid" />
-                                  <label>Session: </label>
-                                  <input type="radio" name="s1" id="s1" value="MORNING" style="margin-left: 3%" onclick="getSession(this)"/> Morning
+                                  <label>Session:<span style="color:red; padding:5%;">*</span></label>
+                                  <input required type="radio" name="s1" id="s1" value="MORNING" style="margin-left: 3%" onclick="getSession(this)"/> Morning
                                   <input type="radio" name="s1" id="s2" value="AFTERNOON" onclick="getSession(this)"/> Afternoon
                                 </div>
                                 
@@ -385,11 +386,11 @@ $lvlid=$row['tblStudent_tblLevelId'];
                                           $query1=$con->query("select * from tblscheme where tblScheme_tblFeeId='$feeid' and tblSchemeFlag=1");
                                           if($query1->num_rows >=1 )
                                           {
-                                        ?>
+                                        ?> 
                                         <div><input type="hidden" value="<?php echo $lvlid ?>" name="txtlvlid" id="txtlvlid" />
-                                          <label> <?php echo $row['tblFeeName'] ?></label>
+                                          <label> <?php echo $row['tblFeeName'] ?></label><span style="color:red; padding:5%;">*</span>
                                           <select class="form-control" name="selSchemeMand[]" id="selSchemeMand" style="width: 30%;" onchange="showSchemeDetail2(this)">
-                                            <option disabled selected value="0">--Select Scheme</option>
+                                            <option disabled selected value="0">--Select Scheme --</option>
                                             <?php
                                             $query2=mysqli_query($con, "select * from tblscheme where tblScheme_tblFeeId='$feeid' and tblSchemeFlag=1");
                                             while($row2=mysqli_fetch_array($query2))
