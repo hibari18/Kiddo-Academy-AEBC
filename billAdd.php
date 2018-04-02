@@ -5,6 +5,9 @@ $type=$_GET['type'];
 	echo '<input type="hidden" value="'.$feeid.'" name="txtFeeId" id="txtFeeId" />';
 	if(!empty($feeid))
 	{
+	$query1=mysqli_query($con, "select * from tblscheme where tblScheme_tblFeeId='$feeid' and tblSchemeFlag=1");
+	if($query1->num_rows >= 1)
+	{
 	echo '<select name="selScheme" id="selScheme"><option selected disabled>--Select Scheme--</option>';
 	$query="select tblSchemeId, tblSchemeType from tblscheme where tblScheme_tblFeeId='$feeid' and tblSchemeFlag=1";
 	$result=mysqli_query($con, $query);
@@ -12,6 +15,10 @@ $type=$_GET['type'];
 		echo '<option value="'; echo $row["tblSchemeId"]; echo '">'; echo $row["tblSchemeType"]; echo '</option>';
 	endwhile;
 	echo '</select>';
+	}else if($query1->num_rows == 0)
+	{
+		echo '<input type="hidden" name="selScheme" id="selScheme" value="0" />';
+	}
 	}
 	if($type=='0')
 	{
@@ -28,7 +35,7 @@ $type=$_GET['type'];
 		echo '<input type="hidden" name="txtLevel" id="txtLevel" value="None"/>';
 	}else if($type==2)
 	{
-		echo '<div class="col-md-12" style="margin-top: 3%">';
+		echo '<div class="col-md-12" style="margin-top: 5%">';
 		echo '<table id="datatable1" class="table table-bordered table-striped">
               <thead>
               <tr>

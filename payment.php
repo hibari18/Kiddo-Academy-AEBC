@@ -1062,7 +1062,7 @@ $(document).ready(function(){
 
                   <div class="modal-body">
 
-                    <div class="form-group" style="display: none;">
+                    <div class="form-group" style="display: none">
                       <label class="col-sm-4 control-label">Payment Scheme ID</label>
                       <div class="col-sm-6">
                         <div class = "input-group">

@@ -315,8 +315,33 @@
                               <button type="submit" class="btn btn-info" name="btnAdd" id="btnAdd">Save</button>
                             </div>
                           </form>
-                          </div>
 
+                          </div>
+                          <!-- <div style="margin-top: 5%">
+                          <table id="datatable" name="datatable" class="table table-bordered table-striped">
+                              <thead>
+                                <tr>
+                                  <th>Fee Detail Name</th>
+                                  <th>Amount</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                  <?php
+                                  $query = "select * from tblfeedetail where tblFeeDetailFlag=1";
+                                  $result = mysqli_query($con, $query);
+                                  while($row = mysqli_fetch_array($result))
+                                  {
+                                  ?>
+                                  <tr>
+                                    <td style="width:100px;"><?php echo $row['tblFeeDetailName'] ?></td>
+                                    <td style="width:100px;"><?php echo $row['tblFeeDetailAmount'] ?></td>
+                                  </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                            </div> -->
+                            <!-- table -->
                               </div>
                               <!-- box -->
                               </div>

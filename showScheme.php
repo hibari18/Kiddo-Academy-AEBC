@@ -23,7 +23,7 @@ while($row=mysqli_fetch_array($result))
 <?php } ?>
 </select>
 </div>
-<?php } ?>
+
 
 <div style="margin-top: 5%; margin-bottom: 5%">
  <table class="table table-bordered table-striped" id="datatable2">
@@ -40,4 +40,5 @@ while($row=mysqli_fetch_array($result))
  </table>
 </div>
 <input type="hidden" value="<?php echo $lvlid ?>" name="txtlevelid" id="txtlevelid" />
+<?php } ?>
 <!--   -->

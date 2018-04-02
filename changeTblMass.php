@@ -23,8 +23,13 @@ echo '<thead>
       {
             $query=mysqli_query($con, "select * from tblfee where tblFeeId='$feeid' and tblFeeFlag=1");
             $row=mysqli_fetch_array($query);
-            echo '<tr><td hidden></td><td class="feecode-cell" data-nodetails="1" data-feeid="'.$row["tblFeeId"].'">'.$row["tblFeeCode"].'</td><td>'.$row["tblFeeName"].'</td>';
-            echo '<td>NO SCHEME</td><td>1</td><td></td><td></td><td><button type="button" class="btn btn-success btnUpdateSched" data-toggle="modal"><i class="fa fa-edit"></i></button>
+            echo '<tr><td hidden></td>
+            <td class="feecode-cell" data-nodetails="1" data-feeid="'.$row["tblFeeId"].'">'.$row["tblFeeCode"].'</td><td>'.$row["tblFeeName"].'</td>';
+            echo '<td>NO SCHEME</td>
+            <td>NO SCHEME</td>
+            <td>'.$row["tblFeeDueDate"].'</td>
+            <td>'.$row["tblFeeAmnt"].'</td>
+            <td><button type="button" class="btn btn-success btnUpdateSched" data-toggle="modal"><i class="fa fa-edit"></i></button>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModalThree"><i class="fa fa-undo"></i></button></td></tr>';
       }else if($query2->num_rows >=1)
       {
