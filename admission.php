@@ -415,11 +415,13 @@
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <img id="studpictureview" src="//placehold.it/100" class="avatar img-rounded img-reponsive" alt="Student's Photo"  style="height:180px;max-width:100%;">
+          <!-- <img id="studpictureview" src="//placehold.it/100" class="avatar img-rounded img-reponsive" alt="Student's Photo"  style="height:180px;max-width:100%;"> -->
+          <img id="studpictureview" src="<?php echo $studimg ?>" class="avatar img-rounded img-reponsive img-thumbnail" alt="avatar">
            <h6>Upload photo...</h6>
 
           <!-- <input type="file" class="form-control" name="avatar" id="picture" accept="image/*" style="margin-top:3%;" required> -->
-          <input type="file" accept="image/*" style="margin-top:3%;" onchange="document.getElementById('studpictureview').src = window.URL.createObjectURL(this.files[0])" required>
+          <!-- <input type="file" accept="image/*" style="margin-top:3%;" onchange="document.getElementById('studpictureview').src = window.URL.createObjectURL(this.files[0])" required> -->
+          <input type="file" class="text-center center-block well well-sm" name="file" id="file" accept="image/*" onchange="document.getElementById('studpictureview').src = window.URL.createObjectURL(this.files[0])">
         </div>
       </div>
 
@@ -468,10 +470,10 @@
             <div class="col-lg-4" style="width:27%;">
               <input class="form-control" type="text" name="txtStudNat" id="txtStudNat">
             </div>
-            <label class="col-lg-1 control-label left">Gender:<span style="color:red; padding:5%;">*</span></label>
+            <label class="col-lg-1 control-label left">Sex:<span style="color:red; padding:5%;">*</span></label>
             <div class="col-lg-3">
               <select class="form-control" type="text" name="txtStudGender" id="txtStudGender">
-                <option selected disabled>--Select Gender--</option>
+                <option selected disabled>--Select Sex--</option>
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
               </select>

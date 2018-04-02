@@ -606,7 +606,7 @@ $(document).ready(function(){
                               <div class="col-sm-6 selectContainer">
                                 <div class="input-group" style="width:100%;">
                                   <select class="form-control" name="selAddFeeMand" id="selAddFeeMand" style="text-transform:uppercase ;">
-                                  <option selected disabled>--Select Fee Status--</option>
+                                  <option selected disabled value="">-- Select Fee Status --</option>
                                   <option value='Y'>Mandatory</option>
                                   <option value='N'>Optional</option>
                                   </select>
@@ -620,7 +620,7 @@ $(document).ready(function(){
                               <div class="col-sm-6 selectContainer">
                                 <div class="input-group" style="width:100%;">
                                   <select class="form-control" name="selAddFeeType" id="selAddFeeType" style="text-transform:uppercase ;">
-                                  <option selected disabled>--Select Fee Status--</option>
+                                  <option selected disabled value="">-- Select Fee Status --</option>
                                   <option value='GENERAL FEE'>GENERAL FEE</option>
                                   <option value='SPECIFIC FEE'>SPECIFIC FEE</option>
                                   </select>
@@ -682,7 +682,6 @@ $(document).ready(function(){
                               <div class="col-sm-6 selectContainer">
                                 <div class="input-group" style="width:100%;">
                                   <select class="form-control" name="selUpdFeeMand" id="selUpdFeeMand" style="text-transform:uppercase ;">
-                                  <option selected disabled>--Select Fee Status--</option>
                                   <option value='Mandatory'>Mandatory</option>
                                   <option value='Optional'>Optional</option>
                                   </select>
@@ -696,7 +695,6 @@ $(document).ready(function(){
                               <div class="col-sm-6 selectContainer">
                                 <div class="input-group" style="width:100%;">
                                   <select class="form-control" name="selUpdFeeType" id="selUpdFeeType" style="text-transform:uppercase ;">
-                                  <option selected disabled>--Select Fee Status--</option>
                                   <option value='GENERAL FEE'>GENERAL FEE</option>
                                   <option value='SPECIFIC FEE'>SPECIFIC FEE</option>
                                   </select>
@@ -1332,11 +1330,10 @@ var activeTab = localStorage.getItem('activeTab');
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            txtAddFeeName: {
+            txtAddFeeCode: {
                 validators: {
                     stringLength: {
                         min: 3,
-                        max: 20,
                         message: 'Please enter at least 3 characters'
                     },
                        regexp: {
@@ -1348,6 +1345,35 @@ var activeTab = localStorage.getItem('activeTab');
                     }
                 }
             },
+            txtAddFeeName: {
+                validators: {
+                    stringLength: {
+                        min: 3,
+                        message: 'Please enter at least 3 characters'
+                    },
+                       regexp: {
+                        regexp: /^[a-zA-Z_\w-][0-9a-zA-Z_\w-\s][\w-'\s]+$/,
+                        message: 'The first character must be an alphabet or does not allow special character'
+                    },
+                        notEmpty: {
+                        message: 'Fee name is required'
+                    }
+                }
+            },
+            selAddFeeMand: {
+                validators: {
+                  notEmpty: {
+                      message: 'Division is required.'
+                  },
+                }
+            },
+            selAddFeeType: {
+                validators: {
+                  notEmpty: {
+                      message: 'Division is required.'
+                  },
+                }
+            }
           }
         })
          .on('success.form.bv', function (e) {

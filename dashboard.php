@@ -61,6 +61,14 @@
   <link rel="stylesheet" href="css/fullcalendar.min.css">
   <link rel="stylesheet" href="css/fullcalendar.print.css" media="print">
   <link rel="stylesheet" href="css/iCheck/all.css">
+   <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: bold;
+      }
+    </style>
+    
 </head>
 <body class="hold-transition skin-green-light sidebar-mini">
  <div class="wrapper">

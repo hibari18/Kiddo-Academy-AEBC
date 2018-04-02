@@ -41,7 +41,7 @@ include('session.php');
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Kiddo Academy SIS</title>
-    <link rel="icon" type="image/gif" href="images/School Logo/symbol.png"/>
+    <link rel="icon" type="image/gif" href="images/symbol.png"/>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -59,6 +59,13 @@ include('session.php');
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="formwizard2.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: bold;
+      }
+    </style>
   <script>
   // function showLevel()
   //   {
@@ -168,17 +175,7 @@ include('session.php');
               <p style="padding: 3px 30px; font-size: 12px;"><?php echo $rolename ?></p>
             </div>
           </div>
-          <!-- search form -->
-          <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
-                  <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                    </button>
-                  </span>
-            </div>
-          </form>
-          <!-- /.search form -->
+
           <!-- sidebar menu: : style can be found in sidebar.less -->
            <ul class="sidebar-menu"  style="font-size:17px;">
              <li class="header" style="color:black;">
@@ -252,7 +249,7 @@ include('session.php');
         <section class="content-header"></section>
 
         <!-- Main content -->
-    <section class="content" style="margin-top: 4%">
+    <section class="content">
       <div class="row">
           <div class="col-md-12">
             <div class="box box-default">
@@ -267,22 +264,78 @@ include('session.php');
                         <div class="box">
                         <div class="box-header"></div>
                             <div class="box-body">
-                              <div class="col-md-6">
+                              <div class="col-md-12">
                                 <div class="form-group">
-                                  <label>Create User Account</label>
+                                  <center><label>Create User Account</label></center>
                                 </div>
                               </div>
                               <form action="saveParentUser.php" method="post">
-                              <div class="col-md-12" style="float: middle">
-                                <div class="form-group" style="margin-top: 2%">
+                              <center><div class="col-md-12" style="float: middle">
+
+                              <div class="form-group" style="margin-top: 2%;width: 35%;">
+                                <label class="col-sm-5 control-label">Student Id:</label>
+                                <div class="col-sm-6">
+                                  <div class = "input-group">
+                                    <input type="text" style="width: 100%;" name="txtStudId" id="txtStudId" value="<?php echo $studid ?>" readonly>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group" style="margin-top: 7%;width: 35%;">
+                                <label class="col-sm-5 control-label">Student Name:</label>
+                                <div class="col-sm-6">
+                                  <div class = "input-group">
+                                    <input type="text" style="width: 100%;" name="txtStudName" id="txtStudName" value="<?php echo $studname ?>" readonly>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group" style="margin-top: 12%;width: 35%;">
+                                <label class="col-sm-5 control-label">Student's Parent:</label>
+                                <div class="col-sm-6">
+                                  <div class = "input-group">
+                                    <select style="width: 110%;" name="selParent" id="selParent" onchange="putParentId()">
+                                  <option>--Select Parent--</option>
+                                  <?php
+                                    $query="select  s.tblStudentId, p.tblParentId, p.tblParentRelation, concat(p.tblParentLname, ', ', p.tblParentFname, ' ', p.tblParentMname) as parentname from tblstudent s, tblparentstudent ps, tblparent p where s.tblStudentId='$studid' and s.tblStudentId=ps.tblParStud_tblStudentId and ps.tblParStud_tblParentId=p.tblParentId";
+                                    $result=mysqli_query($con, $query);
+                                    while($row=mysqli_fetch_array($result)):
+                                      $parentid=$row['tblParentId'];
+                                  ?>
+                                  <option value="<?php echo $row['tblParentId'] ?>"><?php echo $row['tblParentRelation'].": ".$row['parentname'] ?></option>
+                                <?php endwhile; ?>
+                                  </select>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group" style="margin-top: 17%;width: 35%;">
+                                <label class="col-sm-5 control-label">Parent Id:</label>
+                                <div class="col-sm-6">
+                                  <div class = "input-group">
+                                    <input type="text" readonly style="width: 100%;" name="txtParentId" id="txtParentId">
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group" style="margin-top: 22%;width: 35%;">
+                                <label class="col-sm-5 control-label">Password:</label>
+                                <div class="col-sm-6">
+                                  <div class = "input-group">
+                                    <input type="password" style="width: 100%;" name="txtParentPass" id="txtParentPass">
+                                  </div>
+                                </div>
+                              </div>
+
+                                <!-- <div class="form-group" style="margin-top: 2%;width: 35%;">
                                   <label>Student Id:</label>
                                   <input type="text" style="width: 30%;" name="txtStudId" id="txtStudId" value="<?php echo $studid ?>" readonly>
-                                </div>
-                                <div class="form-group" style="margin-top: 2%">
+                                </div> -->
+                               <!--  <div class="form-group" style="margin-top: 2%; width: 75%;">
                                   <label>Student Name:</label>
                                   <input type="text" style="width: 30%;" name="txtStudName" id="txtStudName" value="<?php echo $studname ?>" readonly>
-                                </div>
-                                <div class="form-group" style="margin-top: 2%">
+                                </div> -->
+                                <!-- <div class="form-group" style="margin-top: 2%; width: 75%">
                                   <label>Student's Parent:</label>
                                   <select style="width: 30%;" name="selParent" id="selParent" onchange="putParentId()">
                                   <option>--Select Parent--</option>
@@ -295,19 +348,21 @@ include('session.php');
                                   <option value="<?php echo $row['tblParentId'] ?>"><?php echo $row['tblParentRelation'].": ".$row['parentname'] ?></option>
                                 <?php endwhile; ?>
                                   </select>
-                                </div>
-                                <div class="form-group" style="margin-top: 2%">
+                                </div> -->
+                                <!-- <div class="form-group" style="margin-top: 2%; width: 35%;">
                                   <label>Parent Id: </label>
                                   <input type="text" readonly style="width: 30%;" name="txtParentId" id="txtParentId">
                                 </div>
-                                <div class="form-group" style="margin-top: 2%">
+ -->                             <!--    <div class="form-group" style="margin-top: 2%; width: 50%;">
                                   <label>Password: </label>
                                   <input type="password" style="width: 30%;" name="txtParentPass" id="txtParentPass">
+                                </div> -->
+                                <div class="form-group" style="margin-top: 27%;margin-left: 37%;">
+                                 
+                                  <button type="submit" class="btn btn-success" style="width: 25%;" name="btnSave" id="btnSave">OK</button>
+                                
                                 </div>
-                                <div class="form-group" style="margin-top: 4%">
-                                  <button type="submit" class="btn btn-success" style="width: 15%;" name="btnSave" id="btnSave">OK</button>
-                                </div>
-                              </div>
+                              </div></center>
                               </form>
                             </div> <!-- box body tab_1 -->
 

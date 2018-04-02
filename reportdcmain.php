@@ -1,13 +1,7 @@
-<?php 
-include "db_connect.php";
-include "session.php";
-$arrSubj=array();
-$query="select * from tblschoolyear where tblSchoolYearFlag=1 and tblSchoolYrActive='ACTIVE'";
-$result=mysqli_query($con, $query);
-$row=mysqli_fetch_array($result);
-$syid=$row['tblSchoolYrId'];
-$sy=$row['tblSchoolYrYear'];
-$x=substr($login_session,0,1);
+<?php
+   include('session.php');
+   include('db_connect.php');
+   $x=substr($login_session,0,1);
    if($x=="P")
    {
     $query="select tblParentId, concat(tblParentLname, ', ', tblParentFname, ' ', tblParentMname) as names from tblparent where tblParent_tblUserId='$user_id' and tblParentFlag=1";
@@ -30,6 +24,10 @@ $x=substr($login_session,0,1);
     $result1=mysqli_query($con, $query1);
     $row1=mysqli_fetch_array($result1);
     $roleid=$row1['tblUser_tblRoleId'];
+    $query="select * from tblrole where tblRoleId='$roleid' and tblRoleFlag=1";
+    $result=mysqli_query($con, $query);
+    $row=mysqli_fetch_array($result);
+    $rolename=$row['tblRoleName'];
    }
 ?>
 <!DOCTYPE html>
@@ -38,6 +36,7 @@ $x=substr($login_session,0,1);
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Kiddo Academy SIS</title>
+  <link rel="icon" type="image/gif" href="images/symbol.png"/>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -50,17 +49,17 @@ $x=substr($login_session,0,1);
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="css/select2.min.css">
   <link rel="stylesheet" type="text/css" href="formwizard2.css">
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+    <style>
+      body {
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: bold;
+      }
+    </style>
   <script>
   function changeTblTab1()
   {
@@ -129,7 +128,7 @@ $x=substr($login_session,0,1);
 
                     <p>
                       <!--<?php echo $namess ?>-->
-                     <!--  <small><?php echo $rolename ?></small> -->
+                      <small><?php echo $rolename ?></small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -161,7 +160,7 @@ $x=substr($login_session,0,1);
 
                         <div class="pull-left info" style="margin-top: 3%">
               <p><?php echo $namess ?><i class="fa fa-circle text-success" style="margin-left: 7px"></i></p>
-              <p style="padding: 3px 30px; font-size: 12px;"><!-- <?php echo $rolename ?></p> -->
+              <p style="padding: 3px 30px; font-size: 12px;"> <?php echo $rolename ?></p>
             </div>
           </div>
 
@@ -363,9 +362,9 @@ $x=substr($login_session,0,1);
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
+ <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> Last na please
+      <b>Version</b> 2017
     </div>
     <strong>Copyright &copy; 2017 <a href="http://almsaeedstudio.com">Kiddo Academy and Development Center</a>.</strong> All rights
     reserved.

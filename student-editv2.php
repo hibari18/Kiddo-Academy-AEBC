@@ -306,11 +306,13 @@
         $studimg = $row['tblStudInfoImage'];
         $arrStud = array($fname, $lname, $mname, $bday, $bplace, $gender, $addst, $addbrgy, $addcity, $addcountry, $religion, $nationality, $lang1, $lang2);
         ?>
-    <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 5%">
       <div class="text-center">
-        <img src="<?php echo $studimg ?>" class="avatar img-circle img-thumbnail" alt="avatar">
+        <img id="studpictureview" src="<?php echo $studimg ?>" class="avatar img-rounded img-reponsive img-thumbnail" alt="avatar">
+       <!--  <img id="studpictureview" src="<?php echo $studimg ?>" class="avatar img-rounded img-reponsive" alt="Student's Photo"  style="height:180px;max-width:100%;"> -->
         <h6>Upload new photo</h6>
-        <input type="file" class="text-center center-block well well-sm" name="file" id="file">
+        <input type="file" class="text-center center-block well well-sm" name="file" id="file" accept="image/*" onchange="document.getElementById('studpictureview').src = window.URL.createObjectURL(this.files[0])">
+        <!-- <input type="file" accept="image/*" style="margin-top:3%;" onchange="document.getElementById('studpictureview').src = window.URL.createObjectURL(this.files[0])" required> -->
       </div>
     </div>
     <!-- edit form column -->
@@ -347,7 +349,7 @@
           </div>
         </div>
         <div class="form-group">
-        <label class="col-lg-3 control-label">Gender:</label>
+        <label class="col-lg-3 control-label">Sex:</label>
           <div class="col-lg-7">
             <label class="radio-inline">
               <input type="radio" name="optradio" value="M" <?php echo($gender=='M')?'checked':'' ?>>Male
@@ -468,7 +470,7 @@
                       <!-- left column -->
                       <div class="col-md-4 col-sm-6 col-xs-12">
                       <div class="text-center">
-                          <img src="<?php echo $studimg ?>" class="avatar img-circle img-thumbnail" alt="avatar">
+                          <img src="<?php echo $fimg ?>" class="avatar img-circle img-thumbnail" alt="avatar">
                           <h6>Upload new photo</h6>
                           <input type="file" class="text-center center-block well well-sm" name="fatherfile" id="fatherfile">
                         </div>
@@ -481,7 +483,7 @@
                       {
 
                         $id = $_POST['txtStudId'];
-                        $query = "select p.tblParentId, p.tblParentLname, p.tblParentFname, p.tblParentMname, p.tblParentAddSt, p.tblParentAddBrgy, p.tblParentAddCity, p.tblParentAddCountry, p.tblParentTelNo, p.tblParentCpNo, p.tblParentOccupation, p.tblParentCompany, p.tblParentComAddSt, p.tblParentComAddBrgy, p.tblParentComAddCity, p.tblParentComAddCountry, p.tblParentWorkNo, p.tblParentEmail from tblparent p, tblparentstudent ps where ps.tblParStud_tblStudentId = '$id' and p.tblParentId=ps.tblParStud_tblParentId and p.tblParentFlag = 1 and p.tblParentRelation = 'Father'";
+                        $query = "select p.tblParentId, p.tblParentLname, p.tblParentFname, p.tblParentMname, p.tblParentAddSt, p.tblParentAddBrgy, p.tblParentAddCity, p.tblParentAddCountry, p.tblParentTelNo, p.tblParentCpNo, p.tblParentOccupation, p.tblParentCompany, p.tblParentComAddSt, p.tblParentComAddBrgy, p.tblParentComAddCity, p.tblParentComAddCountry, p.tblParentWorkNo, p.tblParentEmail, p.tblParentImage from tblparent p, tblparentstudent ps where ps.tblParStud_tblStudentId = '$id' and p.tblParentId=ps.tblParStud_tblParentId and p.tblParentFlag = 1 and p.tblParentRelation = 'Father'";
                         $result = mysqli_query($con, $query);
                         $row = mysqli_fetch_array($result);
                         $pId = $row['tblParentId'];
@@ -502,6 +504,7 @@
                         $pcaddcountry = $row['tblParentComAddCountry'];                        
                         $pcompanyno = $row['tblParentWorkNo'];
                         $pemail = $row['tblParentEmail'];
+                        $fimg = $row['tblParentImage'];
                         $arrFather = array($pfname, $plname, $pmname, $ptelno, $pcpno, $pjob, $pcompany, $pcompanyno, $pemail);
                         ?>
                         <input type="hidden" name="txtFStudId" id="txtFStudId" value="<?php echo $id ?>"/>
