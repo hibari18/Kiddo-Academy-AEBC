@@ -9,7 +9,7 @@ $result=mysqli_query($con, $query);
 $row=mysqli_fetch_array($result);
 $id=$row['tblUserId'];
 $id++;
-$query="insert into tbluser values ('$id', '$parentid', '$parentpass', 1, 1)";
+$query="insert into tbluser values ('$id', '$parentid', '$parentpass', 4, 1)";
 if (!$query = mysqli_query($con, $query)) {
    exit(mysqli_error($con));
 }else{

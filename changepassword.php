@@ -287,42 +287,26 @@
 
                             <div class="box-body">
                               <div class="col-md-12"  style="margin-top: 3%">
-                                <form method="post" action="updatepassword.php" id="pw">
+                                <form method="POST" action="updatepassword.php" id="pw">
                                 <div class="form-group">
+                                  <input type="hidden" name="txtUserId" value="<?php echo $user_id ?>">
                                     <label for="password" class="col-sm-3 control-label">New Password:</label>
                                     <div class="col-sm-3">
-                                        <input type="password" class="form-control" id="password" name="password" value="">
+                                      <?php 
+                                        $query4="select * from tbluser where tblUserId='$user_id' and tblUserFlag=1";
+                                        $result4=mysqli_query($con, $query4);
+                                        $row4=mysqli_fetch_array($result4);
+                                        $userpw=$row1['tblUserPassword'];
+                                      ?>
+                                        <input type="password" class="form-control" id="password" name="password" value="<?php echo $userpw ?>">
                                     </div>
 
 
                                     <div class="btn-group" style="margin-top: 5%; float: right">
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalPassword" style="margin-right: 15px; ">Proceed</button>
+                                        <button type="submit" name="changePW" class="btn btn-info" style="margin-right: 15px; ">Proceed</button>
                                     </div>
 
-              <!-- Modal Enrollment -->
-                <div class="modal fade" id="modalPassword" role="dialog">
-                  <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title" id="changePassword"> PROCEED </h4>
-                        </div>
-                        <div class="row" style="margin-top: 5%">
-
-                            <div class="form-group">
-                              <h4 align="center" style="margin-top: 5%">Are you sure you want to change password?</h4>
-                            </div>
-                          
-                        </div>
-                          <div class="modal-footer" style="margin-top: 5%; float: center">
-                            <button type="submit" class="btn btn-info" name="changePW" id="changePW">OK</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                          </div>
-                    </div>
-                  </div>
-                </div>
-                <!--modal end-->
+              
                                 </div> 
                               </form>
                               </div>

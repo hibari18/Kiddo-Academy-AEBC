@@ -292,7 +292,7 @@
                                   <input type="radio" name="r1" id="r1" value="2" onclick="addFields()"/> Per Student
                                 </div>
 
-                               <div style="margin-bottom:10px; padding: 10px;">
+                               <div style="margin-bottom:10px; margin-top: 10px">
                                 <label>Select Fee: </label>
                               <select name="selFee" id="selFee" onclick="addFields()">
                                 <option disabled selected value="0">--Select Fee--</option>

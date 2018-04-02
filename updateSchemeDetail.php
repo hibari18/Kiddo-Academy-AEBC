@@ -1,7 +1,7 @@
 <?php
 include "db_connect.php";
 	$id=$_POST['txtDetId'];
-	$feeid=$_POST['txtFeeIdUpdateSched'];
+	
 	$no=$_POST['txtDetNo'];
 	$due=$_POST['txtDetDueDate'];
 	if(empty($due))
@@ -9,6 +9,8 @@ include "db_connect.php";
 		$due="0000-00-00";
 	}
 	$amount=$_POST['txtDetAmount'];
+	if(isset($_POST['btnDetSave']))
+	{
 	$arrLvl = array();
 	$query  = "select * from tbllevel where tblLevelFlag = 1";
 	$result = mysqli_query($con, $query);
@@ -55,11 +57,16 @@ include "db_connect.php";
 	}
 	else {
 		//update all levels
-		$query="update tblschemedetail set tblSchemeDetailDueDate='$due', tblSchemeDetailAmount='$amount' where tblSchemeDetail_tblFee = '$feeid' and tblSchemeDetailFlag = 1 and tblSchemeDetailName='$no'";
+		$query="update tblschemedetail set tblSchemeDetailDueDate='$due', tblSchemeDetailAmount='$amount' where tblSchemeDetailId = '$id' and tblSchemeDetailFlag = 1 and tblSchemeDetailName='$no'";
 		$result = mysqli_query($con, $query);
 	}
-	if (!$result) {
-		exit(printf("scheme_id = %s\nMESSAGE = %s",$scheme_id,mysqli_error($con)));
+	}else if(isset($_POST['btnDetSave1']))
+	{
+		$feeid=$_POST['txtFeeIdUpdateSched'];
+		$query="update tblfee set tblFeeDueDate='$due', tblFeeAmnt='$amount' where tblFeeId='$feeid' and tblFeeFlag=1";
+	}
+	if (!$query = mysqli_query($con, $query)) {
+				   exit(mysqli_error($con));
 	 } else {
 		 header("location:payment.php?message=4");
 	 }
