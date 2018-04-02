@@ -78,7 +78,7 @@
     <script>
       function showCheck()
       {
-        if(document.getElementById('check').checked) {
+        if(document.getElementById('chkCheck').checked) {
             $("#txtAmount").prop('disabled', false);
             $("#txtBankName").prop('disabled', false);
             $("#num").prop('disabled', false);
@@ -427,6 +427,7 @@
       <input type="hidden" id="bankname" name="bankname" />
       <input type="hidden" id="date" name="date" value="<?php echo date('Y-m-d') ?>" />
       <input type="hidden" id="chknum" name="chknum" />
+      <input type="hidden" id="txtor" name="txtor" value="<?php echo $ornum ?>" />
       <button type="submit" class="btn btn-info btn-block" style="width: 10%; float: right; margin-top: 5%; margin-right: 12%">Print Receipt</button>
     </form> 
   </div>
