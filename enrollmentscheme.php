@@ -335,6 +335,7 @@ $lvlid=$row['tblStudent_tblLevelId'];
                                   <div>
                                   <input type="hidden" value="<?php echo $studid ?>" name="txtstudid" id="txtstudid" />
                                   <input type="hidden" value="<?php echo $lvlid ?>" name="txtlvlid" id="txtlvlid" />
+                                  <input type="hidden" value="None" name="selSchemeOpt" id="selSchemeOpt" />
                                   <label>Session:<span style="color:red; padding:5%;">*</span></label>
                                   <input required type="radio" name="s1" id="s1" value="MORNING" style="margin-left: 3%" onclick="getSession(this)"/> Morning
                                   <input type="radio" name="s1" id="s2" value="AFTERNOON" onclick="getSession(this)"/> Afternoon
