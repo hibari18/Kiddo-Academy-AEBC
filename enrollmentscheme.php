@@ -346,32 +346,95 @@ $lvlid=$row['tblStudent_tblLevelId'];
                                     <fieldset style="margin: 5px; margin-left: -7px; height: 50%">
                                       <h4 style="font-weight: bold; padding: 3px; margin-left: 2%">Mandatory</h4>
                                       <hr>
+                                      <table class="table"><thead>
+                                            <th>Fee Name</th><th>Due Date</th><th>Amount on Due Date</th></thead><tbody>
                                       <?php
+                                        
                                         $query="select * from tblfee where tblFeeMandatory='Y' and tblFeeFlag=1";
                                         $result=mysqli_query($con, $query);
                                         while($row=mysqli_fetch_array($result)):
                                         ?>
-                                        <div><p style="padding-left: 10px"> <?php echo $row['tblFeeName'] ?></p></div>
+                                        <tr><td>
+                                          <?php echo $row['tblFeeName'] ?>
+                                        </td>
+                                          <?php
+                                          $feetype=$row['tblFeeType'];
+                                          if($feetype=='GENERAL FEE')
+                                          {
+                                          ?>
+                                          <td><?php echo $row['tblFeeDueDate'] ?></td>
+                                          <td><?php echo $row['tblFeeAmnt'] ?></td>
+                                          <?php
+                                          }else if($feetype=='SPECIFIC FEE')
+                                          {?>
+                                            <td colspan="2"><button type="button" class="btn btn-info view_section" data-toggle="modal" data-target="#mdlBreakdown" data-id="<?php echo $row['tblFeeId'] ?>">View Fee Breakdown</button></td>
+                                          <?php } 
+                                          ?>  
+                                          </tr>                                        
                                       <?php endwhile; ?>
+                                      </tbody></table>
                                     </fieldset>
                                   </div>
                                     <div class="col-md-6">
                                     <fieldset style="margin: 5px; margin-left: -7px;">
                                       <h4 style="font-weight: bold; padding: 3px; margin-left: 2%">Optional</h4>
                                       <hr>
+                                     
+                                          <table id="datatable5" class="table"><thead>
+                                            <th>Fee Name</th><th>Due Date</th><th>Amount on Due Date</th></thead><tbody>
                                       <?php
                                         
                                         $query="select * from tblfee where tblFeeMandatory='N' and tblFeeFlag=1";
                                         $result=mysqli_query($con, $query);
                                         while($row=mysqli_fetch_array($result)):
                                         ?>
-                                        <div>
-                                          
-                                          <input type="checkbox" class="optionalfees" name="optionalfees[]" id="optionalfees" value="<?php echo $row['tblFeeId'] ?>" onclick="appendScheme(this)" /> <?php echo $row['tblFeeName'] ?></div>
-                                          
+                                        <tr><td>
+                                          <input type="checkbox" class="optionalfees" name="optionalfees[]" id="optionalfees" value="<?php echo $row['tblFeeId'] ?>" onclick="appendScheme(this)" /> <?php echo $row['tblFeeName'] ?>
+                                        </td>
+                                          <?php
+                                          $feetype=$row['tblFeeType'];
+                                          if($feetype=='GENERAL FEE')
+                                          {
+                                          ?>
+                                          <td><?php echo $row['tblFeeDueDate'] ?></td>
+                                          <td><?php echo $row['tblFeeAmnt'] ?></td>
+                                          <?php
+                                          }else if($feetype=='SPECIFIC FEE')
+                                          {?>
+                                            <td colspan="2"><button type="button" class="btn btn-info view_section" data-toggle="modal" data-target="#mdlBreakdown" data-id="<?php echo $row['tblFeeId'] ?>" data-title="<?php echo $lvlid?>">View Fee Breakdown</button></td>
+                                          <?php } 
+                                          ?>  
+                                          </tr>                                        
                                       <?php endwhile; ?>
+                                      </tbody></table>
+                                      
                                     </fieldset>
                                   </div>
+                          <div class="modal fade" id="mdlBreakdown" role="dialog">
+                          <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h3 class="modal-title" style="font-style: bold"><span id="view_students_title"></span></h3>
+                              </div>
+                                <div class="modal-body">
+                                  <div class="box-body table-responsive no-padding" style="margin-top: 2%">
+                                    <div class="form-group">
+                                      
+                                      <label>Fee Breakdown:</label>
+                                        <textarea class="form-control" name="section_student_list" id="section_student_list" cols="50" rows="10" readonly style="resize: none;"></textarea>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer" style="float: center">
+                                  <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                </div>
+                              
+                            </div>
+
+                          </div>
+                        </div>
 
                                   <div class="col-md-12" style="margin-top: 3%">
                                     <h4 style="font-weight: bold">Schemes</h4>
@@ -620,6 +683,31 @@ $lvlid=$row['tblStudent_tblLevelId'];
       });
       $(document).ready(function() {
       $(".choose").select2();
+
+      $('.view_section').click(function(e){
+            var id = $(this).attr('data-id');
+            var lvl = $('#txtlvlid').val();
+            // $('#view_students_title').text($(this).attr('data-title'));
+            
+            $.ajax({
+                type: 'GET',  
+                url: 'showFeeBreakdown.php',
+                data: {
+                  id: id,
+                  level: lvl
+                },
+                dataType: 'html',
+                success: function(data) {
+                  console.log(data);
+                  $('#section_student_list').val(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                    $('#section_student_list').val(data.responseText);
+                }
+            });
+          });
+
     });
     </script>
 

@@ -8,7 +8,6 @@
         where s.tblStudentId=si.tblStudInfo_tblStudentId 
         and s.tblStudentType='OFFICIAL'
         and s.tblStudentFlag=1 
-        and s.tblStudentId IN (select tblSectStud_tblStudentId from tblsectionstud where tblSectStud_tblSectionId='$sectid' and tblSectStudFlag=1)
         order by tblStudentId";
 
     $result=mysqli_query($con, $query);
