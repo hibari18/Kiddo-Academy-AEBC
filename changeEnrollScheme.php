@@ -8,11 +8,18 @@ $optfees=$_POST['optionalfees'];
 $lvlid=$_POST['txtlvlid'];
 
 $query=mysqli_query($con, "select * from tblstudscheme where tblStudScheme_tblStudentId='$studid' and tblStudScheme_tblSchoolYrId='$syid' and tblStudSchemeFlag=1");
+if($query->num_rows >= 1)
+{
+	$ctr = 1;
 while($row=mysqli_fetch_array($query))
 {
 	$ssid=$row['tblStudSchemeId'];
 	$query1=mysqli_query($con, "update tblstudscheme set tblStudSchemeFlag=0 where tblStudScheme_tblStudentId='$studid' and tblStudScheme_tblSchoolYrId='$syid' and tblStudSchemeFlag=1");
 	$query2=mysqli_query($con, "update tblaccount set tblAccFlag=0 where tblAcc_tblStudSchemeId='$ssid' and tblAccFlag=1");
+}
+}else if($query->num_rows == 0)
+{
+	$ctr = 0;
 }
 
 // foreach($schemem as $x)
@@ -221,7 +228,12 @@ $query="update tblstudent set tblStudentPreferSession='$session', tblStudentType
 				exit(mysqli_error($con));
 	}else
 	{
-		
+		if($ctr == 1)
+		{
 		header("location:enrollmentmain.php");
+		}else if($ctr == 0)
+		{
+		header("location:createParentUser.php?studentid=$studid");
 		}
+	}
 ?>
