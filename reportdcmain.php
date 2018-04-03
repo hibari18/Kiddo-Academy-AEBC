@@ -85,8 +85,18 @@
     var y = document.getElementById("selstat").value;
     if(x != 0 && y != 0)
     {
-      document.getElementById("txtsy").value=x;
-      document.getElementById("txtstat").value=y;
+      // document.getElementById("txtsy").value=x;
+      // document.getElementsByClassName("txtsy").value=y;
+      txt1=document.getElementsByClassName("txtsy");
+      txt2=document.getElementsByClassName("txtstat");
+      for(i=0; i<txt1.length; i++)
+      {
+        txt1[i].value=x
+      }
+      for(i=0; i<txt2.length; i++)
+      {
+        txt2[i].value=y
+      }
       $('.btngen').removeAttr('disabled');
     }
   }
@@ -341,7 +351,7 @@
                       ?>
                       <tr>
                        <td><?php echo $row['tblLevelName'] ?></td>
-                       <td><form method="post" action="reportarc.php"><input type="hidden" value="<?php echo $row['tblLevelId'] ?>" name="lvlid" id="lvlid"/><input type="hidden" name="txtsy" id="txtsy"/><input type="hidden" name="txtstat" id="txtstat"/><button type="submit" class="btn btn-success btngen" name="btngenerate" id="btngenerate">Generate Report</button></form></td>
+                       <td><form method="post" action="reportarc.php"><input type="hidden" value="<?php echo $row['tblLevelId'] ?>" name="lvlid" id="lvlid"/><input type="Text" class="txtsy" name="txtsy" id="txtsy"/><input type="text" class="txtstat" name="txtstat" id="txtstat"/><button type="submit" class="btn btn-success btngen" name="btngenerate" id="btngenerate">Generate Report</button></form></td>
                       </tr>
                     <?php endwhile; ?>
                     </tbody>
