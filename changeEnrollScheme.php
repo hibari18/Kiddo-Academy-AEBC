@@ -222,6 +222,6 @@ $query="update tblstudent set tblStudentPreferSession='$session', tblStudentType
 	}else
 	{
 		
-		header("location:enrollmentmain.php");
+		header("location:enrollmentmain.php?message=2");
 		}
 ?>

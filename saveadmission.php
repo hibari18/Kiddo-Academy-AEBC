@@ -296,6 +296,6 @@ foreach($liveswith as $val2)
 	   exit(mysqli_error($con));
 	}
 }
-header('Location:admission.php');
+header('Location:admission.php?message=2');
 
 ?>
