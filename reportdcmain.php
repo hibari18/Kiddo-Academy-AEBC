@@ -351,7 +351,7 @@
                       ?>
                       <tr>
                        <td><?php echo $row['tblLevelName'] ?></td>
-                       <td><form method="post" action="reportarc.php"><input type="hidden" value="<?php echo $row['tblLevelId'] ?>" name="lvlid" id="lvlid"/><input type="Text" class="txtsy" name="txtsy" id="txtsy"/><input type="text" class="txtstat" name="txtstat" id="txtstat"/><button type="submit" class="btn btn-success btngen" name="btngenerate" id="btngenerate">Generate Report</button></form></td>
+                       <td><form method="post" action="reportarc.php"><input type="hidden" value="<?php echo $row['tblLevelId'] ?>" name="lvlid" id="lvlid"/><input type="hidden" class="txtsy" name="txtsy" id="txtsy"/><input type="hidden" class="txtstat" name="txtstat" id="txtstat"/><button type="submit" class="btn btn-success btngen" name="btngenerate" id="btngenerate">Generate Report</button></form></td>
                       </tr>
                     <?php endwhile; ?>
                     </tbody>

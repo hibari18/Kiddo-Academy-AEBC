@@ -68,7 +68,7 @@ function Footer()
     $row=mysqli_fetch_array($query);
     $syid=$row['tblSchoolYrId'];
     $x=1;
-    $query=mysqli_query($con, "select concat(si.tblStudInfoLname, ', ', si.tblStudInfoFname, ' ', si.tblStudInfoMname) as studentname, s.tblStudentId, s.tblStudent_tblLevelId from tblstudent s, tblstudentinfo si where si.tblStudInfo_tblStudentId=s.tblStudentId and s.tblStudentType='$type' group by s.tblStudentId");
+    $query=mysqli_query($con, "select concat(si.tblStudInfoLname, ', ', si.tblStudInfoFname, ' ', si.tblStudInfoMname) as studentname, s.tblStudentId, s.tblStudent_tblLevelId, d.tblStudDismissReason from tblstudent s, tblstudentinfo si, studdismisswithdraw d where si.tblStudInfo_tblStudentId=s.tblStudentId and s.tblStudentType='$type' group by s.tblStudentId");
     while($row=mysqli_fetch_array($query)):
         $lvlid=$row['tblStudent_tblLevelId'];
         $query1=mysqli_query($con, "select tblLevelName from tbllevel where tblLevelId='$lvlid' and tblLevelFlag=1");
@@ -78,7 +78,7 @@ function Footer()
         $pdf->Cell(20, 5, $row['tblStudentId'], 1, 0);
         $pdf->Cell(50,5,$row['studentname'],1,0);
         $pdf->Cell(30,5,$lvlname,1,0);
-        $pdf->Cell(95,5,'sample',1,0);
+        $pdf->Cell(95,5, $row['tblStudDismissReason'],1,0);
         $x++;
     endwhile;
 
