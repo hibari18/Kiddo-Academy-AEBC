@@ -8,11 +8,18 @@ $optfees=$_POST['optionalfees'];
 $lvlid=$_POST['txtlvlid'];
 
 $query=mysqli_query($con, "select * from tblstudscheme where tblStudScheme_tblStudentId='$studid' and tblStudScheme_tblSchoolYrId='$syid' and tblStudSchemeFlag=1");
+if($query->num_rows >= 1)
+{
+	$ctr = 1;
 while($row=mysqli_fetch_array($query))
 {
 	$ssid=$row['tblStudSchemeId'];
 	$query1=mysqli_query($con, "update tblstudscheme set tblStudSchemeFlag=0 where tblStudScheme_tblStudentId='$studid' and tblStudScheme_tblSchoolYrId='$syid' and tblStudSchemeFlag=1");
 	$query2=mysqli_query($con, "update tblaccount set tblAccFlag=0 where tblAcc_tblStudSchemeId='$ssid' and tblAccFlag=1");
+}
+}else if($query->num_rows == 0)
+{
+	$ctr = 0;
 }
 
 // foreach($schemem as $x)
@@ -30,10 +37,10 @@ while($row=mysqli_fetch_array($query))
 // 		$feeid=$row['tblScheme_tblFeeId'];
 // 		if($query->num_rows >= 1)
 // 		{
-			
+
 // 		}else if($query->num_rows == 0)
 // 		{
-			
+
 // 		}
 // 	}
 // }
@@ -47,7 +54,7 @@ foreach($optfees as $val)
 		{
 			$query="select * from tblscheme where tblScheme_tblFeeId='$val' and tblSchemeFlag=1";
 			$result=$con->query($query);
-			
+
 			if($result->num_rows >= 1)
 			{
 				$query1="select * from tblstudscheme where tblStudScheme_tblFeeId='$val' and tblStudSchemeFlag=1 and tblStudScheme_tblStudentId='$studid' and tblStudScheme_tblSchoolYrId='$syid' and tblStudScheme_tblSchemeId='$x'";
@@ -57,7 +64,7 @@ foreach($optfees as $val)
 				$query1="insert into tblstudscheme(tblStudScheme_tblSchemeId, tblStudScheme_tblFeeId, tblStudScheme_tblStudentId, tblStudSchemeFlag, tblStudScheme_tblSchoolYrId) value ('$x', '$val', '$studid', 1, '$syid')";
 				if (!$query1 = mysqli_query($con, $query1)){
     					exit(mysqli_error($con));
-    					
+
 				}
 				}
 			}else if($result->num_rows == 0)
@@ -69,7 +76,7 @@ foreach($optfees as $val)
 					$query2="insert into tblstudscheme(tblStudScheme_tblFeeId, tblStudScheme_tblStudentId, tblStudSchemeFlag, tblStudScheme_tblSchoolYrId) value ('$val', '$studid', 1, '$syid')";
 					if (!$query2 = mysqli_query($con, $query2)){
 	    					exit(mysqli_error($con));
-	    					
+
 					}
 				}
 			}
@@ -83,7 +90,7 @@ foreach($optfees as $val)
 					$query2="insert into tblstudscheme(tblStudScheme_tblFeeId, tblStudScheme_tblStudentId, tblStudSchemeFlag, tblStudScheme_tblSchoolYrId) value ('$val', '$studid', 1, '$syid')";
 					if (!$query2 = mysqli_query($con, $query2)){
 	    					exit(mysqli_error($con));
-	    					
+
 					}
 				}
 	}
@@ -99,20 +106,20 @@ while($row3=mysqli_fetch_array($query3))
 		{
 			$query="select * from tblscheme where tblScheme_tblFeeId='$fee' and tblSchemeId='$x' and tblSchemeFlag=1";
 			$result=$con->query($query);
-			
+
 			if($result->num_rows >= 1)
 			{
 				$query1="select * from tblstudscheme where tblStudScheme_tblFeeId='$fee' and tblStudSchemeFlag=1 and tblStudScheme_tblStudentId='$studid' and tblStudScheme_tblSchoolYrId='$syid' and tblStudScheme_tblSchemeId='$x'";
 				$result1=$con->query($query1);
 				if($result1->num_rows == 0)
 				{
-				
+
 				$query2="insert into tblstudscheme(tblStudScheme_tblSchemeId, tblStudScheme_tblFeeId, tblStudScheme_tblStudentId, tblStudSchemeFlag, tblStudScheme_tblSchoolYrId) value ('$x', '$fee', '$studid', 1, '$syid')";
 				if (!$query2 = mysqli_query($con, $query2)){
     					exit(mysqli_error($con));
-    					
+
 				}
-				
+
 				}
 			}else if($result->num_rows == 0)
 			{
@@ -123,7 +130,7 @@ while($row3=mysqli_fetch_array($query3))
 					$query2="insert into tblstudscheme(tblStudScheme_tblFeeId, tblStudScheme_tblStudentId, tblStudSchemeFlag, tblStudScheme_tblSchoolYrId) value ('$fee', '$studid', 1, '$syid')";
 					if (!$query2 = mysqli_query($con, $query2)){
 	    					exit(mysqli_error($con));
-	    					
+
 					}
 				}
 			}
@@ -150,14 +157,14 @@ $query="select * from tblstudscheme where tblStudScheme_tblStudentId='$studid' a
 				$result4=mysqli_query($con, $query5);
 				$row4=mysqli_fetch_array($result4);
 				$accountid=$row4['tblAccId'];
-				$accountid ++; 
+				$accountid ++;
 				$query5="insert into tblaccount(tblAccId, tblAcc_tblStudentId, tblAcc_tblStudSchemeId, tblAccCredit, tblAccDueDate, tblAccPaymentNum, tblAccRunningBal) values ('$accountid', '$studid', '$studscheme', '$payment', '$duedate', '$paymentnum', '$payment')";
 				if (!$query5 = mysqli_query($con, $query5)) {
-				exit(mysqli_error($con));	
+				exit(mysqli_error($con));
 				}
 			}
 
-			
+
 		}else if(empty($schemeId))
 		{
 			$query6=mysqli_query($con, "select * from tblfee where tblFeeId=$studfeeid and tblFeeFlag=1");
@@ -221,7 +228,12 @@ $query="update tblstudent set tblStudentPreferSession='$session', tblStudentType
 				exit(mysqli_error($con));
 	}else
 	{
-		
-		header("location:enrollmentmain.php?message=2");
+		if($ctr == 1)
+		{
+		header("location:enrollmentmain.php");
+		}else if($ctr == 0)
+		{
+		header("location:createParentUser.php?studentid=$studid");
 		}
+	}
 ?>
