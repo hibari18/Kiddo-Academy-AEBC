@@ -519,7 +519,7 @@ $(document).ready(function(){
 
                 <div class="tab-pane active" id="tab_1" style="padding: 3%">
                     <div class="btn-group" style="margin-bottom: 3%">
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalList"><i class="fa fa-list"></i>  View Fee List</button>
+                      <button class="btn btn-success"><a href="outputListOfFees.php" target="_blank" style="color: white;">View List of Fees</a></button>
                     </div>
                     <div class="btn-group" style="margin-bottom: 3%">
                       <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addModalOne"><i class="fa fa-plus"></i>Add</button>
