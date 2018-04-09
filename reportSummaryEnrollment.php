@@ -18,22 +18,22 @@ class PDF extends FPDF
 function Header()
 {
     // Logo
-    $this->Image('images/logo.png',35,10,150,30);
+    // $this->Image('images/logo.png',35,10,150,30);
     // Arial bold 10
     $this->SetFont('Arial','',8);
     // Set placement
      $this->SetXY(111,25);
     // Contact Details
-    $this->Cell(10,10,"2/F GA Tower, # 83 EDSA, Mandaluyong City 1550, Philippines",0,0,'C');
+    $this->Cell(10,10,"Address",0,0,'C');
     $this->Ln(3);// Line break
     $this->SetX(111);
-    $this->Cell(10,10,"Telephone Nos.: 576-4171/0905-5529605",0,0,'C');
+    $this->Cell(10,10,"Telephone Nos.:",0,0,'C');
     $this->Ln(3);// Line break
     $this->SetX(111);
-    $this->Cell(10,10,"E-mail: kiddo_academy@yahoo.com",0,0,'C');
+    $this->Cell(10,10,"E-mail:",0,0,'C');
     $this->Ln(3);// Line break
     $this->SetX(111);
-    $this->Cell(10,10,"Website: www.kiddoacademy.com",0,0,'C');
+    $this->Cell(10,10,"Website:",0,0,'C');
 }
 
 
@@ -87,7 +87,7 @@ while($row3=mysqli_fetch_array($query)){
   
     $pdf->SetFont('Arial','',10);
     $pdf->SetXY(30,230);//X-Left, Y- Down
-    $pdf->Cell(10,10,'Aimee Tayag-Ang',0,0,'');
+    $pdf->Cell(10,10,'',0,0,'');
     $pdf->SetFont('Arial','',8);
     $pdf->SetXY(30,235);//X-Left, Y- Down
     $pdf->Cell(10,10,'School-Head',0,0,'');
@@ -96,7 +96,7 @@ while($row3=mysqli_fetch_array($query)){
 
     $pdf->SetFont('Arial','',10);
     $pdf->SetXY(150,230);//X-Left, Y- Down
-    $pdf->Cell(10,10,'Aimee Tayag-Ang',0,0,'');
+    $pdf->Cell(10,10,'',0,0,'');
     $pdf->SetFont('Arial','',8);
     $pdf->SetXY(150,235);//X-Left, Y- Down
     $pdf->Cell(10,10,'Teacher',0,0,'');

@@ -35,8 +35,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Kiddo Academy SIS</title>
-  <link rel="icon" type="image/gif" href="images/School Logo/symbol.png"/>
+  <title>AEBC</title>
+  <link rel="icon" type="image/gif" href=""/>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -88,9 +88,9 @@
     <!-- Logo -->
     <a href="home.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><image src="logo.ico" style="width: 50px; padding: 3px"></span>
+      <span class="logo-mini"><image src="" style="width: 50px; padding: 3px"></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><image src="logo.png" style="width: 200px; padding: 3px;"></span>
+      <span class="logo-lg"><image src="" style="width: 200px; padding: 3px;"></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -133,7 +133,7 @@
           </li>
         </ul>
       </div>
-      <p style="text-align: center; font-size: 14px; padding-top: 15px; color: white">Kiddo Academy Admission and Enrollment with Billing and Collection</p>
+      
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->

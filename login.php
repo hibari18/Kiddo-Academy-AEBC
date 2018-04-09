@@ -33,8 +33,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kiddo Academy Log-In</title>
-<link rel="icon" type="image/gif" href="images/School Logo/symbol.png"/>
+<title>AEBC</title>
+<link rel="icon" type="image/gif" href=""/>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="css/font-awesome.css">
  <link rel="stylesheet" type="text/css" href="css/style.css"/>
@@ -51,11 +51,11 @@
 
 <body>
 <div class="container-fluid containerz">
-  <center><div class="photo">
+ <!--  <center><div class="photo">
     <img id="logo" src="images/symbol.png">
     <img id="name" src="images/logo1.png">
-  </div></center>
-  <center><div class="container">
+  </div></center> -->
+  <center><div class="container" style="margin-top: 10%">
    <div class="tagAuthentication">
         <b><p id="tagAdmin">User Authentication</p></b>
     </div>
@@ -79,7 +79,7 @@
 </div></center>
   <div class="row footer">
     <div class="text-center col-md-6 col-md-offset-3">
-      <b><p>Copyright &copy; 2017 &middot; Kiddo Academy and Development Center &middot;All Rights Reserved</p></b>
+      <b><p>Copyright &copy; 2017 &middot; All Rights Reserved</p></b>
     </div>
   </div>
 </div>
