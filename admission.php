@@ -56,6 +56,11 @@
     <link rel="stylesheet" href="css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="formwizard2.css"><!--
     <link href="css/multiple-select.css" rel="stylesheet"/> -->
+
+    <!-- sweetalert -->
+  <script src="sweetalert-master/dist/sweetalert-dev.js"></script>
+  <link rel="stylesheet" href="sweetalert-master/dist/sweetalert.css">
+
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <style>
       body {
@@ -147,6 +152,19 @@
   </head>
 
   <body class="hold-transition skin-green-light sidebar-mini">
+      <?php
+    $message = isset($_GET['message'])?intval($_GET['message']):0;
+    
+    if($message == 1) {
+      echo "<script> swal('Data insertion failed!', ' ', 'error'); </script>";
+    }
+    
+    if($message == 2) {
+      echo "<script> swal('Student succesfull addedy!', ' ', 'success'); </script>";
+    }
+  ?>
+
+
       <div class="wrapper">
 
         <header class="main-header">
@@ -415,7 +433,7 @@
       <div class="col-md-3">
         <div class="text-center">
           <!-- <img id="studpictureview" src="//placehold.it/100" class="avatar img-rounded img-reponsive" alt="Student's Photo"  style="height:180px;max-width:100%;"> -->
-          <img id="studpictureview" src="<?php echo $studimg ?>" class="avatar img-rounded img-reponsive img-thumbnail" alt="avatar">
+          <img id="studpictureview" src="<?php echo $studimg ?>" class="avatar img-rounded img-reponsive img-thumbnail" alt="Student's photo here">
            <h6>Upload photo...</h6>
 
           <!-- <input type="file" class="form-control" name="avatar" id="picture" accept="image/*" style="margin-top:3%;" required> -->

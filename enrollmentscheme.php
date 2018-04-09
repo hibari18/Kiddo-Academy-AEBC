@@ -143,24 +143,9 @@ $lvlid=$row['tblStudent_tblLevelId'];
         }
 
         if($message == 2) {
-          echo "<script> swal('Added succesfully!', ' ', 'success'); </script>";
+          echo "<script> swal('Student succesfully enrolled!', ' ', 'success'); </script>";
         }
 
-        if($message == 3) {
-          echo "<script> swal('Data update failed!', ' ', 'error'); </script>";
-        }
-
-        if($message == 4) {
-          echo "<script> swal('Updated succesfully!', ' ', 'success'); </script>";
-        }
-
-        if($message == 5) {
-          echo "<script> swal('Data deletion failed!', ' ', 'error'); </script>";
-        }
-
-        if($message == 6) {
-          echo "<script> swal('Deleted succesfully!', ' ', 'success'); </script>";
-        }
       ?>
     <div class="wrapper">
 
